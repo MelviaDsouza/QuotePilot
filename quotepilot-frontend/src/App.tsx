@@ -90,7 +90,7 @@ function App() {
   const [aiLoading, setAiLoading] = useState(false);
   const [award, setAward] = useState<Award | null>(null);
   const [readiness, setReadiness] = useState<Readiness | null>(null);
-  const [itemCount, setItemCount] = useState(0);
+  const [, setItemCount] = useState(0);
   const [items, setItems] = useState<any[]>([]);
   const [quoteCount, setQuoteCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -338,7 +338,7 @@ function App() {
             ["Vendor Quotes", Upload],
             ["Comparison", GitCompare],
             ["Award Recommendation", Trophy],
-          ].map(([label, Icon], i) => {
+          ].map(([label, Icon]) => {
             const I = Icon as typeof LayoutDashboard;
             return (
               <button
@@ -504,7 +504,7 @@ function App() {
                       Line Items ({aiDraft.items?.length || 0})
                     </h5>
 
-                    {aiDraft.items?.map((item: any, index: number) => (
+                    {aiDraft.items?.map((item: any) => (
                       <div key={item.itemId} className="rounded-lg border p-3 mb-2">
                         <p className="font-medium text-sm">{item.itemId}</p>
                         <p className="text-sm text-slate-600">{item.description}</p>
