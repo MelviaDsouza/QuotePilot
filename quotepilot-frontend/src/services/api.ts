@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8080",
   headers: {
     "Content-Type": "application/json",
   },
@@ -29,5 +29,6 @@ export const createRfx = (data: {
   submissionDeadline: string;
   createdBy: string;
 }) => api.post("/api/rfx", data);
+
 export const getComparison = (rfxId: string, itemIds: string[]) =>
   api.post(`/api/rfx/${rfxId}/comparison/all`, itemIds);
