@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "../services/api";
 
 type Props = {
   rfxId: string;
@@ -26,7 +27,7 @@ export default function RfxItemsImport({ rfxId, onImported }: Props) {
       formData.append("file", file);
 
       const response = await fetch(
-        `http://localhost:8080/api/rfx/${encodeURIComponent(rfxId)}/items/import`,
+        `${API_BASE_URL}/api/rfx/${encodeURIComponent(rfxId)}/items/import`,
         {
           method: "POST",
           body: formData,

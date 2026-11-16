@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { API_BASE_URL } from "../services/api";
 
 interface Message {
   role: "user" | "assistant";
@@ -40,7 +41,7 @@ export default function AnalystChat({ rfxId }: AnalystChatProps) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/rfx/${rfxId}/analyst/chat`,
+        `${API_BASE_URL}/api/rfx/${rfxId}/analyst/chat`,
         {
           method: "POST",
           headers: {

@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Upload } from "lucide-react";
+import { API_BASE_URL } from "../services/api";
 
 type RfxItem = {
     itemId: string;
@@ -64,7 +65,7 @@ export default function VendorQuoteUpload({
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
-    const API = "http://localhost:8080";
+    const API = API_BASE_URL;
 
     async function reviewDocument() {
         if (!file) {

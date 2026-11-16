@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "./services/api";
 import AnalystChat from "./components/AnalystChat";
 import VendorQuoteUpload from "./components/VendorQuoteUpload";
 import ComparisonPage from "./components/ComparisonPage";
@@ -183,7 +184,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/rfx")
+    fetch(`${API_BASE_URL}/api/rfx`)
       .then((res) => { if (!res.ok) throw new Error("Unable to load RFx list"); return res.json(); })
       .then((data) => {
         const list = Array.isArray(data) ? data : [];
@@ -209,7 +210,7 @@ function App() {
     setAiDraft(null);
 
     try {
-      const response = await fetch("http://localhost:8080/api/rfx/ai-draft", {
+      const response = await fetch(`${API_BASE_URL}/api/rfx/ai-draft`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: aiPrompt }),
@@ -238,7 +239,7 @@ function App() {
 
     try {
       // 1. Create the RFx header
-      const response = await fetch("http://localhost:8080/api/rfx", {
+      const response = await fetch(`${API_BASE_URL}/api/rfx`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -259,7 +260,7 @@ function App() {
       if (aiDraft?.items?.length) {
         for (const item of aiDraft.items) {
           const itemResponse = await fetch(
-            `http://localhost:8080/api/rfx/${created.rfxId}/items`,
+            `${API_BASE_URL}/api/rfx/${created.rfxId}/items`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
